@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P1</title>
+    <style type="text/css" media="screen">
+        .container {
+            height: 50vh;
+            width: 250px;
+            border: 1px dotted blue;
+            display: grid;
+            /* grid-template-rows: [row1start]auto[row1end]auto[row2]auto[row3]; */
+            grid-template-columns: auto auto auto;
+            grid-template-areas: ". two five" "one three five" ". four five";
+        }
+        
+        .container div {
+            border: 8px double black;
+            font-size: 15px;
+        }
+        
+        .container div:nth-child(1) {
+            /* grid-column: 1/2;
+            grid-row: 2/3; */
+            grid-area: one;
+        }
+        
+        .container div:nth-child(2) {
+            grid-area: two;
+        }
+        
+        .container div:nth-child(3) {
+            grid-area: three;
+        }
+        
+        .container div:nth-child(4) {
+            grid-area: four;
+        }
+        
+        .container div:nth-child(5) {
+            grid-area: five;
+        }
+        
+        @media screen and (max-width: 600px) and (max-height: 500px) {
+            .container {
+                display: block;
+            }
+            .container div:hover {
+                font-size: 30px;
+            }
+            .container div {
+                transition: font-size 3s;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+
+</html>

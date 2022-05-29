@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P4</title>
+</head>
+
+<body>
+    <form action="/p4" method="POST">
+        <select id="formSelect">
+            <option name="mic">Mic</option>
+            <option name="mare">Mare</option>
+        </select>
+
+        <input type="radio" name="capitala" value="true" id="e">
+        <label for="e">Capitala</label>
+        <input type="radio" name="capitala" value="false" id="nue">
+        <label for="nue">Nu e capitala</label>
+
+        <button type="submit" id="formSubmit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script type="text/javascript">
+        formSubmit.onclick = function(e) {
+            e.preventDefault();
+
+            let dimensiune = document.getElementById("formSelect");
+            dimensiune = dimensiune.options[dimensiune.selectedIndex].value == "Mic" ? 0 : 1;
+
+            let capitala = document.querySelector("input[name='capitala']:checked").value;
+            capitala = capitala == 'true' ? 1 : 0;
+
+            fetch('p4', {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    dimensiune: dimensiune,
+                    capitala: capitala
+                })
+            }).then(function(response) {
+                return response.text();
+            }).then(function(res) {
+                let string = "Selectie: ";
+                for (r of JSON.parse(res)) {
+                    string += r + " ";
+                }
+
+                document.getElementById("result").innerHTML = string;
+            });
+        }
+    </script>
+</body>
+
+</html>

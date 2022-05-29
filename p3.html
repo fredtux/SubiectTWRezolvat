@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P3</title>
+</head>
+
+<body>
+    <input type="text" id="numar" />
+    <p>Lorem ipsum dolor sit amet.</p>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores, eligendi!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro pariatur eos blanditiis, voluptatem tenetur facilis?</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta consequatur fugiat possimus debitis quibusdam eius. Obcaecati nulla sunt quidem vero.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex sequi molestias quo consequuntur ut! Quaerat qui sunt error officiis magnam alias repudiandae repellat totam eveniet.</p>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dicta non architecto ratione vel exercitationem alias quod saepe, quidem ipsam, dolorum voluptas facere ipsum quos fugiat nostrum delectus distinctio atque molestiae!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam quasi soluta error aliquam beatae hic velit, libero, quidem voluptates nam iure quam commodi maiores totam amet ipsam? Facere, accusamus blanditiis. Mollitia odio itaque accusantium
+        beatae?
+    </p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellendus ducimus error quas sunt aut a optio delectus voluptas sequi consequuntur harum non molestiae ipsam et reprehenderit, cumque blanditiis placeat tempora corrupti quia minima fugiat
+        neque. Quae, adipisci. Corporis, magnam eligendi.</p>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatum dolores enim fugiat reprehenderit rerum nemo doloremque, temporibus labore sed in pariatur nisi quos praesentium tenetur nostrum. Quisquam consectetur dolore ex laborum hic, doloribus
+        sequi eveniet veritatis, aspernatur repellat nemo totam eius distinctio iusto qui iste!</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam deleniti reprehenderit tenetur dolorum quam earum quae unde ab recusandae sapiente aspernatur suscipit eaque magni corrupti repudiandae voluptas odio et odit laudantium ratione incidunt
+        maiores repellat, aliquid eum? Consequuntur doloremque sit repellat velit rerum asperiores illum ducimus, exercitationem corrupti suscipit dolor!</p>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            let old = localStorage.getItem("delp");
+            console.log(old);
+            if (old) {
+                document.getElementById("numar").value = old;
+            }
+
+            window.onkeydown = function(e) {
+                if (e.key == 's') {
+                    window.onkeydown = null;
+                    let par = document.getElementsByTagName('p');
+                    let nr = par.length;
+                    let input = document.getElementById('numar');
+                    let ival = parseInt(input.value);
+
+
+                    let intf = setInterval(function() {
+
+                        let x;
+                        par = document.getElementsByTagName('p');
+
+                        for (let p of par) {
+                            if (p.innerHTML.split(' ').length > ival) {
+                                x = p;
+                                break;
+                            }
+                        }
+
+                        if (x) {
+                            document.body.removeChild(x);
+                        } else {
+                            clearInterval(intf);
+                            // par = document.getElementsByTagName("p");
+                            localStorage.setItem("delp", nr - par.length);
+                        }
+
+                    }, 1000);
+
+
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

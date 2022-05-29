@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>P2</title>
+    <style>
+        .dreptunghi {
+            border: 1px solid black;
+            height: 20px;
+            width: 30px;
+            background-color: orangered;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        window.onload = () => {
+            for (let i = 0; i < 10; ++i) {
+                let el = document.createElement("div");
+                el.classList = "dreptunghi";
+                document.body.appendChild(el);
+
+
+                var initHeight = parseInt(window.getComputedStyle(el).height);
+
+                el.onclick = function(e) {
+                    if (this.style.height) {
+                        let currentHeight = parseInt(this.style.height);
+                        this.style.height = currentHeight + 10 + 'px';
+                    } else {
+                        this.style.height = initHeight + 10 + 'px';
+                    }
+
+                    e.stopPropagation();
+                }
+
+            }
+
+            document.body.onclick = function() {
+                let divs = document.getElementsByClassName('dreptunghi');
+                console.log(divs);
+
+                for (d of divs)
+                    d.style.height = initHeight + 'px';
+            }
+        }
+    </script>
+</body>
+
+</html>
